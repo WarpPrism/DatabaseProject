@@ -1,0 +1,94 @@
+The suite of 12 NoBench queries are described in this file, using both the
+MongoDB query language and Argo/SQL, a SQL-like query language for JSON data.
+A more detailed description of the queries and their parameters is available
+at: http://pages.cs.wisc.edu/~chasseur/pubs/argo-long.pdf
+
+Query 1:
+  MongoDB:
+    db["nobench_main"].find({}, ["str1", "num"])
+  Argo/SQL:
+    SELECT str1, num FROM nobench_main;
+
+Query 2:
+  MongoDB:
+    db["nobench_main"].find({}, ["nested_obj.str", "nested_obj.num"])
+  Argo/SQL:
+    SELECT nested_obj.str, nested_obj.num FROM nobench_main;
+
+Query 3 (replace XX with literal digits):
+  MongoDB:
+    db["nobench_main"].find(
+        { "$or" : [ { "sparse_XX0" : {"$exists" : True} },
+                    { "sparse_XX9" : {"$exists" : True} } ] },
+        ["sparse_XX0", "sparse_XX9"])
+  Argo/SQL:
+    SELECT sparse_XX0, sparse_XX9 FROM nobench_main;
+
+Query 4 (replace XX and YY with different literal digits):
+  MongoDB:
+    db["nobench_main"].find(
+        { "$or" : [ { "sparse_XX0" : {"$exists" : True} },
+                    { "sparse_YY0" : {"$exists" : True} } ] },
+        ["sparse_XX0", "sparse_YY0"])
+  Argo/SQL:
+    SELECT sparse_XX0, sparse_YY0 FROM nobench_main;
+
+Query 5 (replace XXXXX with a literal string):
+  MongoDB:
+    db["nobench_main"].find({ "str1" : XXXXX })
+  Argo/SQL:
+    SELECT * FROM nobench_main WHERE str1 = XXXXX;
+
+Query 6 (replace XXXXX and YYYYY with literal integers):
+  MongoDB:
+    db["nobench_main"].find({ "$and": [{ "num" : {"$gte" : XXXXX } },
+                                       { "num" : {"$lt"  : YYYYY } }]})
+  Argo/SQL:
+    SELECT * FROM nobench_main WHERE num BETWEEN XXXXX AND YYYYY;
+
+Query 7 (replace XXXXX and YYYYY with literal integers):
+  MongoDB:
+    db["nobench_main"].find({ "$and": [{ "dyn1" : {"$gte" : XXXXX } },
+                                       { "dyn1" : {"$lt"  : YYYYY } }]})
+  Argo/SQL:
+    SELECT * FROM nobench_main WHERE dyn1 BETWEEN XXXXX AND YYYYY;
+
+Query 8 (replace XXXXX with one of the "suggested" words from data generation):
+  MongoDB:
+    db["nobench_main"].find({ "nested_arr" : XXXXX })
+  Argo/SQL:
+    SELECT * FROM nobench_main WHERE XXXXX = ANY nested_arr;
+
+Query 9 (replace XXX with literal digits and YYYYY with a literal string):
+  MongoDB:
+    db["nobench_main"].find({ "sparse_XXX" : YYYYY })
+  Argo/SQL:
+    SELECT * FROM nobench_main WHERE sparse_XXX = YYYYY;
+
+Query 10 (replace XXXXX and YYYYY with literal integers):
+  MongoDB:
+    db["nobench_main"].group(
+        {"thousandth" : True},
+        {"$and": [{"num" : { "$gte" : XXXXX } },
+                  {"num" : { "$lt"  : YYYYY } }]},
+        { "total" : 0 },
+        "function(obj, prev) { prev.total += 1; }")
+  Argo/SQL:
+    SELECT COUNT(*) FROM nobench_main WHERE num BETWEEN XXXXX AND YYYYY GROUP BY thousandth;
+
+Query 11 (replace XXXXX and YYYYY with literal integers):
+  MongoDB:
+    Implemented as Javascript MapReduce job.
+  Argo/SQL:
+    SELECT * FROM nobench_main AS left
+                  INNER JOIN nobench_main AS right
+                  ON (left.nested_obj.str = right.str1)
+                  WHERE left.num BETWEEN XXXXX AND YYYYY;
+
+Query 12 (use "extra" data file provided by generator):
+  MongoDB:
+    Use mongoimport command-line tool.
+  PostgreSQL:
+    COPY table FROM file;
+  MySQL:
+    LOAD DATA LOCAL INFILE file REPLACE INTO TABLE table;
