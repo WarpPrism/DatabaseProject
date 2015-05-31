@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include "File.h"
 
 using namespace std;
 
@@ -57,6 +60,7 @@ void executeCommand(char c) {
 		case 'I':
 		case 'i':
 			cout << "OK" << endl;
+			insertFilename();
 			break;
 		case 'C':
 		case 'c':
@@ -75,5 +79,5 @@ void executeCommand(char c) {
 			cout << "Command Error. ";
 			cout << "Please Input Again." << endl;
 			break;
-		}
+	}
 }
