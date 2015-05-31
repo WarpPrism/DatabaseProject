@@ -6,16 +6,23 @@
 * src目前只有File.h,File.cpp，之后还会添加Catalog.h,Serializer.h
 * 资源文件放在src之外，如Sinew结构图，nobench等等。
 
+## 执行方法
+* cd src目录
+* make 编译所有文件
+* ./Final 执行Project_UI.cpp（主函数）
+* make clean 清除.o文件 和Final
+
 ## 项目进度
 
 * 1. 分析Sinew系统的结构，以及明确项目要实现的两大功能。 （已完成）
 * 2. 调整nobench，将nltk换成github上的源。 （已完成）
 * 3. 使用nobench生成所需数据,nobench_data.json(10w行),nobench_data_extra.json(12行）。 （已完成）
 * 4. 构建UI。 （待完善）
-* 5. 完成catalog类。
+* 5. 完成File里面的函数。
+* 6. 完成catalog类。
 - 
 - 
-* 6. 完成Serializer类。
+* 7. 完成Serializer类。
 - 
 - 
 
