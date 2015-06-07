@@ -1,0 +1,11 @@
+实现
+void File::extractNestedToFile();
+
+把每一个json对象中的嵌套对象和嵌套数组提取出来放到nested文件中。
+如：{"nested_obj": {"num": 5005, "str": "GBRDCMBQGEYTCMBQGAYTCMBR"}, "dyn2": true, "dyn1": 10005, "nested_arr": ["we've", "this", "which", "the", "between"], "str2": "GBRDCMBQGEYTCMBQGAYTCMBR", "str1": "GBRDCMBQGEYTCMBQGAYTAMJQGE======", "sparse_058": "GBRDCMJQ", "thousandth": 5, "num": 10005, "bool": true, "sparse_059": "GBRDCMJQ", "sparse_054": "GBRDCMJQ", "sparse_055": "GBRDCMJQ", "sparse_056": "GBRDCMJQ", "sparse_057": "GBRDCMJQ", "sparse_050": "GBRDCMJQ", "sparse_051": "GBRDCMJQ", "sparse_052": "GBRDCMJQ", "sparse_053": "GBRDCMJQ"},
+
+提取出来就是：
+"nested_obj": {"num": 5005, "str": "GBRDCMBQGEYTCMBQGAYTCMBR"} "nested_arr": ["we've", "this", "which", "the", "between"]
+
+每一个对象对应一行。
+其中输入文件已经打开，为test.json，放在inFile文件流中。

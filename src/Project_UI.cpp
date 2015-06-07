@@ -56,11 +56,14 @@ char inputCommand() {
 }
 
 void executeCommand(char c) {
+	File fileobj;
+
 	switch (c) {
 		case 'I':
 		case 'i':
 			cout << "OK" << endl;
-			insertFilename();
+			fileobj.insertFilename();
+			fileobj.extractKeysToFile();
 			break;
 		case 'C':
 		case 'c':
