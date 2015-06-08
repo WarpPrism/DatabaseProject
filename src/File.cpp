@@ -35,6 +35,7 @@ void File::extractKeysToFile() {
 		return;
 	} else if (!inFile) {
 		cerr << "Error. Without inFile." << endl;
+		return;
 	} else {
 		while (!inFile.eof()) {
 			char row[1000] = "";
@@ -65,6 +66,10 @@ void File::extractKeysToFile() {
 					char key[50];
 					int i = 1, j = 0;
 					while (pch[i] != ' ' && pch[i] != '{') {
+						if (pch[i] == '"') {
+							i++;
+							continue;
+						}
 						key[j] = pch[i];
 						i++;
 						j++;
@@ -117,6 +122,7 @@ void File::extractNestedToFile() {
 		return;
 	} else if (!inFile) {
 		cerr << "Error. Without inFile." << endl;
+		return;
 	} else {
 
 

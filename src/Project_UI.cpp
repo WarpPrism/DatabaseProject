@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "File.h"
+#include "Catalog.h"
 
 using namespace std;
 
@@ -57,6 +58,7 @@ char inputCommand() {
 
 void executeCommand(char c) {
 	File fileobj;
+	Catalog catalogobj;
 
 	switch (c) {
 		case 'I':
@@ -64,6 +66,8 @@ void executeCommand(char c) {
 			cout << "OK" << endl;
 			fileobj.insertFilename();
 			fileobj.extractKeysToFile();
+			catalogobj.generateCatalogDatas();
+			catalogobj.printTableOnScreen();
 			break;
 		case 'C':
 		case 'c':
