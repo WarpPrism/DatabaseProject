@@ -3,7 +3,6 @@
 
 ## 文件结构
 * 代码文件放在src中，src包含Project_UI.cpp（也即项目的主函数，以及命令行UI界面），还包含所需实现模块的头文件和cpp文件。
-* src目前只有File.h,File.cpp，之后还会添加Catalog.h,Serializer.h
 * 资源文件放在src之外，如Sinew结构图，nobench等等。
 
 ## 执行方法
@@ -18,7 +17,7 @@
 * 2. 调整nobench，将nltk换成github上的源。 （已完成）
 * 3. 使用nobench生成所需数据,nobench_data.json(10w行),nobench_data_extra.json(12行）。 （已完成）
 * 4. 构建UI。 （待完善）
-* 5. 完成File里面的函数。
-* 6. 完成catalog类。
-* 7. 完成Serializer类。
+* 5. 完成File里面的函数。（进行中）
+* 6. 完成catalog类。(基本完成）
+* 7. 完成Serializer类。（即将进行）
 
