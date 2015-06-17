@@ -7,9 +7,10 @@ typedef struct {
 	int aid[100];
 	int offs[100];
 	int len;
-	char data[1000];
+	char data[2048];
 } Seria;
 
+const int page_size = 8 * 1024;
 
 class Serializer {
 
@@ -22,13 +23,17 @@ public:
 	void getCatlogcount(int source);
 	// generate serialized data
 	void generateSeria();
-	void writeSeriaToFile();
+	// write the first part of seria to file
+	void writeFirstPartToFile();
+	// write the second part of seria to file
+	void writeSecondPartToFile();
 	
 
 private:
-	Seria* seria;
+	Seria seria;
 	Key* catalog;
 	int catalogcount;
+	char Buffer[page_size + 1];
 };
 
 #endif

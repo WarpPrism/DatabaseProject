@@ -23,7 +23,7 @@ void File::insertFilename() {
 		cerr << "Error happens when open the inFile." << endl;
 		return;
 	} else {
-		cout << "Succeed in opening the inFile: " << filename << endl;
+		cout << "\t---> Succeed in opening the inFile: " << filename << endl;
 	}
 }
 
@@ -166,7 +166,6 @@ void File::shiftRAndInsert(char *start) {
 }
 
 void File::extractValuesToFile() {
-	cout << filename << endl;
 	inFile.close();
 	inFile.open(filename);
 	outFile.open("./temp_files/values");
@@ -195,7 +194,9 @@ void File::extractValuesToFile() {
 						// nested array
 						strcpy(value, "");
 						for (int i = 0, j = 0; i < strlen(colon); i++, j++) {
-							if (colon[i] != ']') {
+							if (colon[i] == ' ') {
+								//
+							} else if (colon[i] != ']') {
 								value[j] = colon[i];
 							} else if (colon[i] == ']') {
 								value[j] = colon[i];

@@ -65,25 +65,37 @@ void executeCommand(char c) {
 	switch (c) {
 		case 'I':
 		case 'i':
-			cout << "OK" << endl;
+			cout << "Command OK" << endl;
 			fileobj.insertFilename();
+			/*cout << endl << "\tInformation:" << endl;*/
+			cout << "\t---> Insert File Completed!" << endl;
 			fileobj.extractKeysToFile();
+			cout << "\t---> Extract Keys To File Completed!" << endl;
 			fileobj.extractValuesToFile();
+			cout << "\t---> Extract Values To File Completed!" << endl;
+
 			catalogobj.generateCatalogDatas();
+			cout << "\t---> Generate Catalog Datas Completed!" << endl;
 			catalogobj.outputTheCatalog();
+			cout << "\t---> Output catalog Completed!" << endl;
+
 			serializerobj.getTheCatalogitem(catalogobj.returnCatalogitem());
+			serializerobj.getCatlogcount(catalogobj.returnkeyCount());
+			cout << "\t---> Serializer gets the catalog Completed!" << endl;
+			serializerobj.generateSeria();
+			cout << "\t---> Generate serialized data Completed!" << endl;
 			break;
 		case 'C':
 		case 'c':
-			cout << "OK" << endl;
+			cout << "Command OK" << endl;
 			break;
 		case 'F':
 		case 'f':
-			cout << "OK" << endl;
+			cout << "Command OK" << endl;
 			break;
 		case 'H':
 		case 'h':
-			cout << "OK" << endl;
+			cout << "Command OK" << endl;
 			help();
 			break;
 		default:

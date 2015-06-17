@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <cstdlib>
 #include "Serializer.h"
 
 using namespace std;
@@ -19,30 +20,97 @@ void Serializer::getCatlogcount(int source) {
 }
 
 void Serializer::generateSeria() {
-	ifstream inFile;
-	inFile.open("./temp_files/keys");
-	if (!inFile) {
+	ifstream keyfile;
+	ifstream valuefile;
+	keyfile.open("./temp_files/keys");
+	valuefile.open("./temp_files/values");
+	if (!keyfile) {
 		cerr << "Error happens when opening the temp_files/keys." << endl;
 		return;
+	} else if (!valuefile) {
+		cerr << "Error happens when opening the temp_files/values." << endl;
 	} else {
-		while (!inFile.eof()) {
-			seria->attrNum = 0;
-			char row[500];
-			inFile.getline(row, 500);
+int count = 0;
+
+		while (!keyfile.eof() && !valuefile.eof()) {
+			/*cout << "^_^" << endl;*/
+			seria.attrNum = 0;
+
+			char keyrow[500];
+			char valuerow[1000];
+			keyfile.getline(keyrow, 500);
+			valuefile.getline(valuerow, 1000);
 			char *singlekey;
-			singlekey = strtok(row, " ");
+			char *singlevalue;
+			// keytype temp array.
+			char keytype[70][20];
+			int typeindex = 0;
+
+
+			singlekey = strtok(keyrow, " ");
 			while (singlekey != NULL) {
 				for (int i = 0; i < catalogcount; i++) {
 					if (strcmp(catalog[i].name, singlekey) == 0) {
-						seria->aid[seria->attrNum] = catalog[i]._id;
-						seria->attrNum++;
+						seria.aid[seria.attrNum] = catalog[i]._id;
+						seria.attrNum++;
+						strcpy(keytype[typeindex], catalog[i].type);
+						typeindex++;
 					} else {
 						continue;
 					}
  				}
-
  				singlekey = strtok(NULL, " ");
 			}
+
+			
+			int offindex;
+			seria.len = 0;
+			singlevalue = strtok(valuerow, " ");
+			int j = 0;
+			while (singlevalue != NULL) {
+				seria.offs[offindex] = seria.len;
+
+				offindex++;
+				
+				seria.len += strlen(singlevalue);
+
+				for (int i = 0; i < strlen(singlevalue); i++, j++) {
+					seria.data[j] = singlevalue[i];
+				}
+				singlevalue = strtok(NULL, " ");
+			}
+			seria.data[j] = '\0';
+
+
+			if (count == 0) {
+				cout << seria.attrNum << " ";
+				for (int i = 0; i < typeindex; i++) {
+					cout << seria.aid[i] << ": " << keytype[i] << " ";
+				}
+				cout << endl;
+				for (int i = 0; i < typeindex; i++) {
+					cout << seria.offs[i] << " ";
+				}
+				cout << seria.len << endl;
+				puts(seria.data);
+			}
+count++;
 		}
 	}
+}
+
+void Serializer::writeFirstPartToFile() {
+	FILE *pFile;
+	pFile = fopen("./temp_files/Serializer.data", "wb");
+	if (pFile == NULL) {
+		//cerr << "File:Serializer.data Error." << endl;
+		fprintf(stderr, "File:Serializer.data Error.\n");
+		exit(1);
+	} else {
+
+	}
+}
+
+void Serializer::writeSecondPartToFile() {
+
 }
