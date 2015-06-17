@@ -23,10 +23,8 @@ public:
 	void getCatlogcount(int source);
 	// generate serialized data
 	void generateSeria();
-	// write the first part of seria to file
-	void writeFirstPartToFile();
-	// write the second part of seria to file
-	void writeSecondPartToFile();
+	// write Single Seria To Buffer
+	void writeSeriaToBuffer();
 	
 
 private:

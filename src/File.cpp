@@ -21,6 +21,7 @@ void File::insertFilename() {
 	inFile.open(filename);
 	if (!inFile) {
 		cerr << "Error happens when open the inFile." << endl;
+		exit(1);
 		return;
 	} else {
 		cout << "\t---> Succeed in opening the inFile: " << filename << endl;
@@ -193,11 +194,12 @@ void File::extractValuesToFile() {
 					} else if (colon[0] == '[') {
 						// nested array
 						strcpy(value, "");
-						for (int i = 0, j = 0; i < strlen(colon); i++, j++) {
+						for (int i = 0, j = 0; i < strlen(colon); i++) {
 							if (colon[i] == ' ') {
 								//
 							} else if (colon[i] != ']') {
 								value[j] = colon[i];
+								j++;
 							} else if (colon[i] == ']') {
 								value[j] = colon[i];
 								value[j + 1] = '\0';

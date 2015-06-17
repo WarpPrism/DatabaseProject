@@ -33,8 +33,15 @@ void Serializer::generateSeria() {
 int count = 0;
 
 		while (!keyfile.eof() && !valuefile.eof()) {
-			/*cout << "^_^" << endl;*/
+/*cout << "^_^" << endl;
+cout << count << endl;*/
 			seria.attrNum = 0;
+			for (int i = 0; i < 100; i++) {
+				seria.aid[i] = 0;
+				seria.offs[i] = 0;
+			}
+			seria.len = 0;
+			strcpy(seria.data, "");
 
 			char keyrow[500];
 			char valuerow[1000];
@@ -63,7 +70,7 @@ int count = 0;
 			}
 
 			
-			int offindex;
+			int offindex = 0;
 			seria.len = 0;
 			singlevalue = strtok(valuerow, " ");
 			int j = 0;
@@ -79,13 +86,13 @@ int count = 0;
 				}
 				singlevalue = strtok(NULL, " ");
 			}
-			seria.data[j] = '\0';
+			/*seria.data[j] = '\0';*/
 
 
-			if (count == 0) {
+			if (count == 2) {
 				cout << seria.attrNum << " ";
 				for (int i = 0; i < typeindex; i++) {
-					cout << seria.aid[i] << ": " << keytype[i] << " ";
+					cout << seria.aid[i] << " ";
 				}
 				cout << endl;
 				for (int i = 0; i < typeindex; i++) {
@@ -94,23 +101,26 @@ int count = 0;
 				cout << seria.len << endl;
 				puts(seria.data);
 			}
+
+			writeSeriaToBuffer();
 count++;
 		}
 	}
 }
 
-void Serializer::writeFirstPartToFile() {
+void Serializer::writeSeriaToBuffer() {
+	char *pbuff = Buffer;
+
+}
+
+void writeBufferToFile() {
 	FILE *pFile;
 	pFile = fopen("./temp_files/Serializer.data", "wb");
 	if (pFile == NULL) {
 		//cerr << "File:Serializer.data Error." << endl;
-		fprintf(stderr, "File:Serializer.data Error.\n");
+		fprintf(stderr, "File: Serializer.data Error.\n");
 		exit(1);
 	} else {
 
-	}
-}
-
-void Serializer::writeSecondPartToFile() {
-
+	}	
 }
