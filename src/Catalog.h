@@ -18,14 +18,21 @@ class Catalog {
 public:
 	Catalog();
 	~Catalog();
+	// generate catalog datas rely on ./temp_files/keys
 	void generateCatalogDatas();
-	char* getKeyType(char* key);
-	void printTableOnScreen();
-	void addCount(char *singlekey);
+	// get key type according to the original data.
+	char* getKeyType(const char *key, char *ktype);
+	// check catalog, print the catalog on the screen in table.
+	// Also output it to temp_files/catalog
+	void outputTheCatalog();
+	// return catalogitem for the serializer
+	Key* returnCatalogitem();
+	// return keycount
+	int returnkeyCount();
 
 
 private:
-	Key keystructarray[200];
+	Key catalogitem[2000];
 	/*Keymap keymap[200];*/
 	int keycount;
 };

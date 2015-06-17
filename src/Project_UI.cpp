@@ -3,6 +3,7 @@
 #include <fstream>
 #include "File.h"
 #include "Catalog.h"
+#include "Serializer.h"
 
 using namespace std;
 
@@ -59,6 +60,7 @@ char inputCommand() {
 void executeCommand(char c) {
 	File fileobj;
 	Catalog catalogobj;
+	Serializer serializerobj;
 
 	switch (c) {
 		case 'I':
@@ -66,8 +68,10 @@ void executeCommand(char c) {
 			cout << "OK" << endl;
 			fileobj.insertFilename();
 			fileobj.extractKeysToFile();
+			fileobj.extractValuesToFile();
 			catalogobj.generateCatalogDatas();
-			catalogobj.printTableOnScreen();
+			catalogobj.outputTheCatalog();
+			serializerobj.getTheCatalogitem(catalogobj.returnCatalogitem());
 			break;
 		case 'C':
 		case 'c':

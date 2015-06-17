@@ -8,18 +8,10 @@ using namespace std;
 
 Catalog::Catalog() {
 	keycount = 0;
-	//initial keymap
-/*	keycount = 0;
-	for (int i = 0; i < 200; i++) {
-		strcpy(keymap[i].name, "");
-	}*/
-
 }
 Catalog::~Catalog() {}
 
 void Catalog::generateCatalogDatas() {
-
-
 	ifstream inFile;
 	inFile.open("temp_files/keys");
 
@@ -32,26 +24,26 @@ void Catalog::generateCatalogDatas() {
 			char row[500];
 			inFile.getline(row, 500);
 			char *singlekey;
-			
 			singlekey = strtok(row, " ");
 			//puts(singlekey);
 			while (singlekey != NULL) {
 				int exist = 0;
 				for (int i = 0; i < keycount; i++) {
-					if (strcmp(keystructarray[i].name, singlekey) == 0) {
+					if (strcmp(catalogitem[i].name, singlekey) == 0) {
 						/*addCount(singlekey);*/
-						keystructarray[i].count += 1;
+						catalogitem[i].count += 1;
 						exist = 1;
 					} else {
 						continue;
 					}
 				}
 				if (!exist) {
-					strcpy(keystructarray[keycount].name, singlekey);
-					/*strcpy(keystructarray[id].name, singlekey);*/
-					keystructarray[id]._id = id;
-					keystructarray[id].count += 1;
-					//type
+					strcpy(catalogitem[keycount].name, singlekey);
+					/*strcpy(catalogitem[id].name, singlekey);*/
+					catalogitem[id]._id = id;
+					catalogitem[id].count += 1;
+					char ktype[20];
+					strcpy(catalogitem[id].type, getKeyType(singlekey, ktype));
 					id++;
 					keycount++;
 				}
@@ -63,11 +55,43 @@ void Catalog::generateCatalogDatas() {
 	inFile.close();
 }
 
-char* Catalog::getKeyType(char* key) {
 
+char* Catalog::getKeyType(const char *key, char *ktype) {
+	if (strncmp("num", key, sizeof("num") - 1) == 0) {
+		strcpy(ktype, "Int");
+		return ktype;
+	} else if (strncmp("bool", key, sizeof("bool") - 1) == 0) {
+		strcpy(ktype, "Bool");
+		return ktype;
+	} else if (strncmp("nested_obj.num", key, sizeof("nested_obj.num") - 1) == 0) {
+		strcpy(ktype, "Int");
+		return ktype;
+	} else if (strncmp("nested_obj.str", key, sizeof("nested_obj.str") - 1) == 0) {
+		strcpy(ktype, "String");
+		return ktype;
+	} else if (strncmp("nested_arr", key, sizeof("nested_arr") - 1) == 0) {
+		strcpy(ktype, "Nested_arr");
+		return ktype;
+	} else if (strncmp("dyn", key, sizeof("dyn") - 1) == 0) {
+		strcpy(ktype, "Dynamic");
+		return ktype;
+	} else if (strncmp("str", key, sizeof("str") - 1) == 0) {
+		strcpy(ktype, "String");
+		return ktype;
+	} else if (strncmp("thousandth", key, sizeof("thousandth")- 1) == 0) {
+		strcpy(ktype, "Int");
+		return ktype;
+	} else if (strncmp("sparse", key, sizeof("sparse") - 1) == 0) {
+		strcpy(ktype, "String");
+		return ktype;
+	} else {
+		strcpy(ktype, "Unknown");
+		return ktype;
+	}
 }
 
-void Catalog::printTableOnScreen() {
+
+void Catalog::outputTheCatalog() {
 	ofstream outFile;
 	outFile.open("./temp_files/catalog");
 	if (!outFile) {
@@ -75,20 +99,18 @@ void Catalog::printTableOnScreen() {
 		return;
 	} else {
 		for (int i = 0; i < keycount; i++) {
-			outFile << keystructarray[i]._id << " \t\t" << keystructarray[i].name << " \t\t"
-					<< keystructarray[i].count << endl;
+			outFile << catalogitem[i]._id << " \t" << catalogitem[i].name << " \t"
+					<< catalogitem[i].type << " \t"<< catalogitem[i].count << endl;
  		}
 	}
 	outFile.close();
 
 }
 
-/*void Catalog::addCount(char *singlekey) {
-	for (int i = 0; i < keycount; i++) {
-		if (strcpy(keystructarray[i].name, singlekey) == 0) {
-			keystructarray[i].count += 1;
-		} else {
-			continue;
-		}
-	}
-}*/
+Key* Catalog::returnCatalogitem() {
+	return catalogitem;
+}
+
+int Catalog::returnkeyCount() {
+	return keycount;
+}
