@@ -15,7 +15,7 @@ public:
 	// extract all keys in .json to temp_files/keys
 	void extractKeysToFile();
 	// extract all nested things to /temp_files/nested
-	void extractNestedToFile();
+	void extractNestedArrToFile();
 	// deal with nested obj
 	void dealwithNestedobj(char *row);
 	// shift

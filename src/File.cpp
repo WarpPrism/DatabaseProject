@@ -101,8 +101,8 @@ char* File::converse(char *str) {
 	return str;   
 }
 
-void File::extractNestedToFile() {
-	outFile.open("./temp_files/nested");
+void File::extractNestedArrToFile() {
+	outFile.open("./temp_files/nestedarr");
 
 	if (!outFile) {
 		cerr << "Error happens when open the outFile." << endl;

@@ -77,13 +77,13 @@ void executeCommand(char c) {
 			catalogobj.generateCatalogDatas();
 			cout << "\t---> Generate Catalog Datas Completed!" << endl;
 			catalogobj.outputTheCatalog();
-			cout << "\t---> Output catalog Completed!" << endl;
+			cout << "\t---> Output Catalog Completed!" << endl;
 
 			serializerobj.getTheCatalogitem(catalogobj.returnCatalogitem());
 			serializerobj.getCatlogcount(catalogobj.returnkeyCount());
-			cout << "\t---> Serializer gets the catalog Completed!" << endl;
+			cout << "\t---> Serializer Gets The Catalog Completed!" << endl;
 			serializerobj.generateSeria();
-			cout << "\t---> Generate serialized data Completed!" << endl;
+			cout << "\t---> Generate Serialized Data Completed!" << endl;
 			break;
 		case 'C':
 		case 'c':
