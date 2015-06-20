@@ -25,6 +25,7 @@ public:
 	// check catalog, print the catalog on the screen in table.
 	// Also output it to temp_files/catalog
 	void outputTheCatalog();
+	void printCatalogOnScreen();
 	// return catalogitem for the serializer
 	Key* returnCatalogitem();
 	// return keycount

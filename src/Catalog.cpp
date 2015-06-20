@@ -107,6 +107,10 @@ void Catalog::outputTheCatalog() {
 
 }
 
+void Catalog::printCatalogOnScreen() {
+	
+}
+
 Key* Catalog::returnCatalogitem() {
 	return catalogitem;
 }
