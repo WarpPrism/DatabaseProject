@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <cstdio>
+#include <iomanip>
 #include <fstream>
 #include "Catalog.h"
 
@@ -38,14 +39,19 @@ void Catalog::generateCatalogDatas() {
 					}
 				}
 				if (!exist) {
-					strcpy(catalogitem[keycount].name, singlekey);
-					/*strcpy(catalogitem[id].name, singlekey);*/
-					catalogitem[id]._id = id;
-					catalogitem[id].count += 1;
 					char ktype[20];
-					strcpy(catalogitem[id].type, getKeyType(singlekey, ktype));
-					id++;
-					keycount++;
+					if (strcmp(getKeyType(singlekey, ktype), "Unknown") == 0) {
+
+					} else {
+						strcpy(catalogitem[keycount].name, singlekey);
+						/*strcpy(catalogitem[id].name, singlekey);*/
+						catalogitem[id]._id = id;
+						catalogitem[id].count += 1;
+						
+						strcpy(catalogitem[id].type, getKeyType(singlekey, ktype));
+						id++;
+						keycount++;
+					}
 				}
 
 				singlekey = strtok(NULL, " ");
@@ -92,23 +98,44 @@ char* Catalog::getKeyType(const char *key, char *ktype) {
 
 
 void Catalog::outputTheCatalog() {
-	ofstream outFile;
-	outFile.open("./temp_files/catalog");
-	if (!outFile) {
+	ofstream outfile;
+	outfile.open("./temp_files/catalog");
+	if (!outfile) {
 		cerr << "Can not open the outFile." << endl;
 		return;
 	} else {
+		outfile << setfill(' ') << left << setw(20) << "_id";
+		outfile << setfill(' ') << left << setw(20) << "Key_name";
+		outfile << setfill(' ') << left << setw(20) << "Key_type";
+		outfile << setfill(' ') << left << setw(20) << "count" << endl;
+		outfile << endl;
 		for (int i = 0; i < keycount; i++) {
-			outFile << catalogitem[i]._id << " \t" << catalogitem[i].name << " \t"
-					<< catalogitem[i].type << " \t"<< catalogitem[i].count << endl;
+			outfile << setfill(' ') << left << setw(20) << catalogitem[i]._id;
+			outfile << setfill(' ') << left << setw(20) << catalogitem[i].name;
+			outfile << setfill(' ') << left << setw(20) << catalogitem[i].type;
+			outfile << setfill(' ') << left << setw(20) << catalogitem[i].count << endl;
+			/*outFile << catalogitem[i]._id << " \t" << catalogitem[i].name << " \t"
+					<< catalogitem[i].type << " \t"<< catalogitem[i].count << endl;*/
  		}
 	}
-	outFile.close();
+	outfile.close();
 
 }
 
 void Catalog::printCatalogOnScreen() {
-	
+	ifstream inFile;
+	inFile.open("temp_files/catalog");
+
+	if (!inFile) {
+		cerr << "Error happens when open the inFile:keys" << endl;
+		return;
+	} else {
+		while (!inFile.eof()) {
+			char row[500];
+			inFile.getline(row, 500);
+			puts(row);
+		}
+	}
 }
 
 Key* Catalog::returnCatalogitem() {

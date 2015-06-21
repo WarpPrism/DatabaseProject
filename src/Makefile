@@ -9,4 +9,4 @@ Serializer: Serializer.cpp
 	g++ -c Serializer.cpp
 
 clean:
-	rm *.o Final
+	rm *.o Final ./temp_files/Serializer

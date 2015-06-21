@@ -26,14 +26,31 @@ public:
 	// generate allseria
 	int generateAllSeria();
 	// write Single Seria To Buffer
-	bool writeSeriaToBuffer(int n);
+	bool writeSeriaToBuffer(int& n);
 	// write Buffer to ./temp_files/Serializer.data
-	void writeBufferToFile();
+	void writeBufferToFile(int serianumber);
+	// restore and generate a Seria instance
+	void restoreSeriaInstance(FILE *pFile); 
+	// find A = B
+	void findAequalsB();
+	// judge if a string is a number
+	bool isdigit(char *str);
+
+	bool recursive_binary_2(int the_vector[], const int &target, int bottom, int top, int &position);
+
+	// restore rseria to json
+	void restoreRseriaToJson();
 	
+	// TAT find
+	void TATfind();
+	void printJson(int rowindex);
+	void getFilename(char *source);
 
 private:
 	Seria seria;
+	Seria rseria;
 	Key* catalog;
+	char filename[70];
 	int catalogcount;
 	char allseria[1500];
 	char Buffer[page_size];

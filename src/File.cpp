@@ -101,7 +101,7 @@ char* File::converse(char *str) {
 	return str;   
 }
 
-void File::extractNestedArrToFile() {
+/*void File::extractNestedArrToFile() {
 	outFile.open("./temp_files/nestedarr");
 
 	if (!outFile) {
@@ -111,9 +111,31 @@ void File::extractNestedArrToFile() {
 		cerr << "Error. Without inFile." << endl;
 		return;
 	} else {
-		
+		while (!inFile.eof()) {
+			char row[1000] = "";
+			inFile.getline(row, 1000);
+			char* pos = strchr(row, "[");
+			int len = strlen(row);
+			while (pos != NULL) {
+				int i = 1;
+				while (pos[i] != ']') {
+					if (pos[i] == ',' || pos[i] == ' ') {
+						i++;
+						continue;
+					} else if (pos[i] == '"') {
+						for (i = i + 1; pos[i] != '"'; i++)
+							outFile << pos[i];
+						outFile << " ";
+						i++;
+					}
+				}
+				ouFile << endl;
+				pos = strchr(pos+1, '[');
+			}
+		}
 	}
-}
+	outFile.close();
+}*/
 
 void File::dealwithNestedobj(char *row) {
 	char * lbrace;
@@ -229,4 +251,8 @@ void File::extractValuesToFile() {
 	}
 	inFile.close();
 	outFile.close();
+}
+
+char* File::returnFilename() {
+	return filename;
 }

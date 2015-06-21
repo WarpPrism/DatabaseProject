@@ -25,6 +25,8 @@ public:
 	// extract values to /temp_files/values
 	void extractValuesToFile();
 
+	char* returnFilename();
+
 private:
 	char filename[70];
 	ifstream inFile;

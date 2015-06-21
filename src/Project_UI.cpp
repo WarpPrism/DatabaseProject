@@ -29,11 +29,29 @@ int main() {
 
 void Introduction() {
 	cout << endl;
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-	cout << "This is the UI of our project." << endl;
-	cout << "And ..." << endl;
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-	cout << endl;
+	cout << "> Hello. Welcome to our DB Project." << endl;
+	cout << "> And the first thing you should do is to insert a file." << endl;
+	cout << "> And if you want to insert a new file, please make clean first." << endl;
+	cout << "> You can type command 'i' to start inserting a file. eg: nobench_data.json." << endl;
+	cout << "> After that you can check the catalog or find A = B." << endl;
+	cout << "> And if you find some bugs during using this program, just forgive us." << endl;
+	cout << "> We feel sorry for our mistakes." << endl;
+	cout << "> Hope you enjoy using it! :)" << endl;
+	cout << ">" << endl;
+	cout << "         niwe            gpod            " << endl;
+	cout << "      sqstruesdq      jvswarmqwe         " << endl;
+	cout << "     ogivemepassideslonmayigetint        " << endl;
+	cout << "     woyourheartbewygarlsrigndokw        " << endl;
+	cout << "     eijustwanttobeyoursideandgir        " << endl;
+	cout << "      rvemewhatihaveletusstepint         " << endl;
+	cout << "       jtusdfcvghjdfgasdfgvfert          " << endl;
+	cout << "        vsasdwvbcaniowwyourhea           " << endl;
+	cout << "         byouarebeautifulrigh            " << endl;
+	cout << "          dtvbhfransfesgniet             " << endl;
+	cout << "            cdqwesdvfgansd               " << endl;
+	cout << "              eswasdwssd                 " << endl;
+	cout << "                 ader                    " << endl;
+	cout << "                  y                      " << endl;
 }
 
 void help() {
@@ -83,15 +101,29 @@ void executeCommand(char c) {
 			serializerobj.getCatlogcount(catalogobj.returnkeyCount());
 			cout << "\t---> Serializer Gets The Catalog Completed!" << endl;
 			serializerobj.generateSeria();
+			serializerobj.getFilename(fileobj.returnFilename());
 			cout << "\t---> Generate Serialized Data Completed!" << endl;
+			cout << "Now you can check the catalog or find A = B." << endl;
 			break;
 		case 'C':
 		case 'c':
 			cout << "Command OK" << endl;
+			cout << "You can open \"./temp_files/catalog\" to check the Catalog." << endl;
+			cout << "Also you can see it in the terminal." << endl;
+			cout << "Show On Screen? Y/N? " << endl;
+			char show;
+			cin >> show;
+			if (show == 'y' || show == 'Y')
+				catalogobj.printCatalogOnScreen();
+			else if (show == 'n' || show == 'N')
+				cout << "OK, The screen will not show catalog. Please check the file." << endl;
+			cout << "Thank you!" << endl;
 			break;
 		case 'F':
 		case 'f':
 			cout << "Command OK" << endl;
+			//serializerobj.findAequalsB();
+			serializerobj.TATfind();
 			break;
 		case 'H':
 		case 'h':
