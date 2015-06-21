@@ -1,0 +1,27 @@
+
+首先，解压缩整个文件，代码放在src目录中，makefile 也在里面。
+src 里面也包含了nobench生成的数据 nobench_data.json test.json
+
+cd src 进入src。
+
+make clean make之前最好先clean一下。
+
+make 编译所有文件
+
+./Final 执行应用程序
+
+按照程序UI 执行操作。
+
+注意事项： 每次重新运行程序时，都需要 make clean 以确保数据不冲突。
+
+	   插入文件一般用相对路径，这样方能打开。
+
+
+English:
+
+cd src
+make clean
+make
+./Final
+make clean
+...
