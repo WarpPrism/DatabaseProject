@@ -16,8 +16,8 @@
 * 1. 分析Sinew系统的结构，以及明确项目要实现的两大功能。 （已完成）
 * 2. 调整nobench，将nltk换成github上的源。 （已完成）
 * 3. 使用nobench生成所需数据,nobench_data.json(10w行),nobench_data_extra.json(12行）。 （已完成）
-* 4. 构建UI。 （待完善）
-* 5. 完成File里面的函数。（进行中）
-* 6. 完成catalog类。(基本完成）
-* 7. 完成Serializer类。（即将进行）
+* 4. 构建UI。 （已完成）
+* 5. 完成File里面的函数。（已完成）
+* 6. 完成catalog类。(已完成）
+* 7. 完成Serializer类。（已完成）
 
