@@ -38,7 +38,7 @@ void Introduction() {
 	cout << "> We feel sorry for our mistakes." << endl;
 	cout << "> Hope you enjoy using it! :)" << endl;
 	cout << ">" << endl;
-	cout << "         niwe            gpod            " << endl;
+	/*cout << "         niwe            gpod            " << endl;
 	cout << "      sqstruesdq      jvswarmqwe         " << endl;
 	cout << "     ogivemepassideslonmayigetint        " << endl;
 	cout << "     woyourheartbewygarlsrigndokw        " << endl;
@@ -51,7 +51,7 @@ void Introduction() {
 	cout << "            cdqwesdvfgansd               " << endl;
 	cout << "              eswasdwssd                 " << endl;
 	cout << "                 ader                    " << endl;
-	cout << "                  y                      " << endl;
+	cout << "                  y                      " << endl;*/
 }
 
 void help() {
