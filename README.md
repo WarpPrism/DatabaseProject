@@ -24,6 +24,6 @@
 ## Markdown 语法练习
 
 > 摇摇洁白的树枝，花语漫天飞扬
-![Milky Way](http://img4q.duitang.com/uploads/item/201204/23/2012042320003_ZknUN.jpeg
+![Milky Way](http://img4q.duitang.com/uploads/item/201204/23/2012042320003_ZknUN.jpeg)
 
 
